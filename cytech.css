@@ -1,279 +1,144 @@
-/* 基本的なリセット (変更なし) */
 body {
+    font-family: sans-serif;
+    margin: 0; /* デフォルトのbodyマージンを削除 */
+    background-color: #f0f0f0; /* 全体の薄い灰色の背景 */
+    display: flex; /* Flexboxを使用して要素を縦に積み重ねる */
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    align-items: center; /* コンテンツを水平方向に中央揃え */
+    min-height: 100vh; /* bodyが少なくともビューポートの全高を取るようにする */
+}
+
+header {
+    background-color: #f8f890; /* 画像の薄い黄色 */
+    text-align: center;
+    padding: 20px 0;
+    width: 900px; /* コンテナと一致させるためのヘッダーの特定の幅 */
+    box-sizing: border-box; /* パディングを幅に含める */
+}
+
+header h1 {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0; /* 全体の背景色 */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* 上部に寄せる */
-    padding: 20px;
-    box-sizing: border-box;
-    min-height: 100vh; /* 画面いっぱいに広がるように */
+    color: #333;
 }
 
-.outer-container {
-    background-color: #ffffaa; /* フォーム全体の黄色い背景 */
-    max-width: 100vw; /* フォームの最大幅を画面幅いっぱいに */
+.container {
+    display: flex; /* サイドバーとメインコンテンツのためにFlexboxを使用 */
+    width: 900px; /* 画面全体に表示されないように特定の幅を設定 */
+    background-color: #fff; /* コンテンツ領域の白色背景 */
+    /* border: 1px solid #ddd; */ /* 潜在的な隙間/線を除くためにボーダーを削除 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* わずかな浮き上がりを表現するための影を保持 */
+}
+
+nav {
+    flex: 0 0 220px; /* 幅を広げて1行に収まるように調整 */
+    background-color: #99ffcc; /* 画像の薄い緑色 */
+    padding: 20px; /* 内部パディング */
+    box-sizing: border-box; /* パディングを幅に含める */
+    /* border-right: 1px solid #ddd; */ /* 隙間をなくすためにボーダーを削除 */
+}
+
+nav ul {
+    padding: 0;
+    list-style: disc; /* デフォルトの黒丸（disc）を表示 */
+}
+
+/* リストアイテムの左側にスペースを確保するために、padding-leftを追加 */
+nav ul {
+    list-style: disc; /* 黒丸（・）を表示 */
+    padding-left: 20px; /* マーカースペース確保と文字のインデント */
+    margin: 0; /* 必要に応じて調整 */
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+nav ul li a {
+    text-decoration: underline; /* アンダーラインを表示 */
+    color: blue; /* 文字色を青に */
+    display: block;
+    padding: 5px 0;
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+main {
+    flex-grow: 1; /* コンテナ内の残りのスペースを占める */
+    padding: 20px; /* 内部パディング */
+    background-color: #ffeecc; /* 画像の薄いオレンジ/ピーチ色 */
+    box-sizing: border-box; /* パディングを幅に含める */
+}
+
+main form table {
     width: 100%;
-    border: none; /* 外側の枠線を完全に消す */
-    border-radius: 0; /* 角丸をなくす */
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-/* フォームヘッダー部分 (水色の背景 + 画像) */
-.form-header {
-    background-color: #40E0D0; /* ターコイズ色の背景色 */
-    padding: 15px 0;
-    min-height: 80px; /* 画像を収めるための最小高さ */
-    display: flex; /* flexboxを使って画像を中央配置 */
-    justify-content: center; /* 水平方向中央 */
-    align-items: center; /* 垂直方向中央 */
-    /* border-bottom: 2px solid #33cccc; <- この行を削除またはコメントアウト */
-}
-
-/* ヘッダー内の画像スタイル */
-.header-image {
-    max-width: 35%; /* 親要素の幅の80%に最大幅を設定 */
-    height: auto; /* 高さは自動調整 */
-    display: block; /* 余分なスペースを削除 */
-}
-
-/* フォーム本体のスタイル */
-.contact-form {
-    padding: 20px 0; /* 左右のパディングはテーブルで調整 */
-    box-sizing: border-box;
-}
-
-/* フォーム上部の説明テキスト */
-.form-description {
-    text-align: left; /* 左寄せ */
-    font-size: 1.1em; /* 少し大きめのフォントサイズ */
-    margin: 15px 0 20px 0; /* 上下の余白を調整 */
-    color: #333; /* 文字色 */
-    padding-left: 0px; /* 左からのパディングは維持（必要に応じて0に）*/
-    padding-right: 0; /* 右のパディングを削除 */
-    box-sizing: border-box; /* paddingを含めて幅を計算 */
-    font-weight: normal; /* 文字の太さを普通にする */
-}
-
-/* ★テーブルのスタイルをここに追加★ */
-.contact-table {
-    width: calc(100% - 60px); /* フォーム全体の左右パディングを考慮 */
-    margin: 0 30px 20px 30px; /* 左右に余白 */
-    border-collapse: collapse; /* セルの境界線を結合 */
-    border: 1px solid #ccc; /* テーブル全体の枠線*/
-    background-color: #fff; /* テーブル全体の背景色（白）*/
-}
-
-.contact-table tr {
-    border-bottom: 1px solid #ccc; /* 各行の下線*/
-}
-
-.contact-table tr:last-child {
-    border-bottom: none; /* 最後の行の下線はなし */
-}
-
-.contact-table td {
-    padding: 10px 10px; /* セル内のパディングを左右10pxに /
-    vertical-align: middle; /* 垂直方向中央揃え */
-     border: 3px double #ccc; /* 二重線に変更（太さや色を調整） */
-}
-
-/* ラベルセル内のサブラベル（「予定の有無」「利用形態」） */
-.sub-label {
-    margin-top: 15px; /* 上部にマージンを追加してメインラベルと区別 */
-    font-weight: normal; /* 親のboldを上書き */
-    color: #333;
-    white-space: nowrap; /* テキストの折り返しを禁止 */
-    /* 必要に応じてパディングやフォントサイズを調整 */
-}
-
-.sub-label p {
-    margin: 0; /* pタグのデフォルトマージンをリセット */
-}
-
-.label-cell {
-    width: 45%; /* 必要に応じて調整 */
-    background-color: #ffffaa; /* フォーム全体の黄色い背景 */
-    font-weight: bold;
-    color: #333;
+main form table th,
+main form table td {
+    padding: 10px;
+    border: 4px double #000000; /* 4pxの二重線、色を少し濃いめに */
     text-align: left;
-    padding: 10px 15px;
 }
 
-.input-cell {
-    width: 55%; /* ラベルセルの残りの幅 */
-    background-color: #ffffaa; /* 入力セルの背景色をフォーム全体と同じ黄色に */
-    padding: 10px 15px;
-    vertical-align: middle;
-    border-right: 3px double #ccc;
+main form table th {
+    background-color: #ffeecc; /* mainと同じ色に設定 */
+    width: 150px;
+    text-align: center; /* 中央揃えに設定 */
 }
 
-/* お問い合わせ種別の「*複数選択可能」を赤文字にする */
-.small-text-multiple-choice {
-    color: #dc3545; /* 赤色（必須バッジと同じ色） */
-    font-weight: bold; /* 太さを太字に変更 */
-    margin-top: 5px; /* 上部に少し余白 */
-    font-size: 0.9em; /* 親の文字サイズより少し小さく */
-}
-
-/* 必須バッジのスタイル (変更なし) */
-.required-badge {
-    background-color: #dc3545; /* 赤色 */
-    color: white;
-    font-size: 0.80em;
-    padding: 2px 6px;
-    border-radius: 3px;
-    margin-left: 5px;
-    vertical-align: middle;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 8px; /* ★ここを追加または変更して角を丸くする */
-}
-
-/* 入力フィールド (input, textarea) */
-.input-cell input[type="text"],
-.input-cell input[type="email"],
-.input-cell input[type="tel"],
-.input-cell textarea {
-    width: calc(100% - 2px); /* セル内のパディングと枠線を考慮 */
-    padding: 8px;
-    border: 1px solid #ccc; /* 入力フィールド自体の枠線 */
+main form table input[type="text"],
+main form table input[type="email"],
+main form table select { /* selectもこのグループに含める */
+    width: 320px; /* 半角40文字分の幅に調整 */
+    padding: 7px;
+    border: 1px solid #888;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 1em;
-    outline: none;
+    margin: 0;
 }
 
-.input-cell textarea {
+main form table textarea {
+    width: calc(100% - 20px); /* パディングを考慮した幅の調整 */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+main form table textarea {
     resize: vertical;
-    min-height: 80px; /* テキストエリアの高さ調整 */
 }
 
-/* チェックボックスとラジオボタンのグループ共通スタイル */
-.checkbox-group,
-.radio-group { /* ★ radio-group をここに追加 ★ */
-    display: flex;
-    flex-wrap: nowrap; /* 常に1行に */
-    gap: 0 15px; /* 項目の間隔を調整 */
-    margin-top: 5px;
-    align-items: center; /* 垂直方向中央揃え */
-    /* justify-content: space-between; /* 均等に配置（必要であれば） */
-    /* overflow-x: auto; /* コンテナからはみ出る場合スクロールバーを表示 */
+main form table input[type="radio"] {
+    margin-right: 5px;
 }
 
-/* ラジオボタンとチェックボックスのラベルのスタイル */
-.checkbox-group label,
-.radio-group label { /* ★ radio-group label をここに追加 ★ */
-    display: flex;
-    align-items: center;
-    font-weight: normal; /* 資料請求と同じ */
-    color: #555; /* 資料請求と同じ */
+.submit-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.submit-button input[type="submit"] {
+    padding: 8px 15px; /* パディングを少し小さく */
+    background-color: #bbc6ce; /* より一般的な青色 */
+    color: rgb(0, 0, 0);
+    border: 1px solid #000000; /* 1px solid の黒色の枠線を追加 */
+    border-radius: 3px; /* 角の丸みを小さく */
     cursor: pointer;
-    white-space: nowrap; /* テキストの折り返しを禁止 */
-    margin-right: 15px; /* 要素間の間隔を調整 */
+    font-size: 14px; /* フォントサイズを少し小さく */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 (もし画像にあるように見えるなら) */
 }
 
-/* ラジオボタンの入力フィールドのスタイル */
-.radio-group input[type="radio"] { /* ★ここを追加★ */
-    margin-right: 5px; /* ラジオボタンとテキストの間隔 */
-    transform: scale(1.1); /* サイズを少し大きく */
-    accent-color: #007bff; /* チェックボックスと同じ色に */
+.submit-button input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
-/* サブグループ (サービスの導入状況) */
-.sub-group {
-    margin-top: 0; /* テーブルセル内なのでマージン調整 */
-    padding-top: 10px;
-    border-top: 1px dashed #e0e0e0;
-}
-
-.sub-group:first-of-type {
-    padding-top: 0;
-    border-top: none;
-    margin-top: 0;
-}
-
-.sub-group p {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.button-group {
-    text-align: left; /* ★左寄せに変更★ */
-    margin-top: 20px; /* 上の余白を調整 */
-    margin-bottom: 20px; /* 下の余白を調整 */
-    padding-right: 30px; /* フォームの右パディングに合わせて右に寄せる */
-    box-sizing: border-box; /* パディングを含めて幅を計算 */
-}
-
-.btn {
-    padding: 6px 18px;
-    font-size: 0.9em;
-    border: 1px solid #c0c0c0;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    min-width: auto;
-    font-weight: normal;
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-/* プライマリボタン（入力確認画面へ）のスタイル */
-.btn.primary {
-    background-color: #e0e0e0;
-    color: #333;
-    border-color: #a0a0a0;
-    margin-right: 10px; /* 右側に余白を追加 ★ */
-    margin-left: 30px; /* 左側に余白を追加 ★ */
-}
-
-.btn.primary:hover {
-    background-color: #d0d0d0;
-}
-
-/* セカンダリボタン（リセット）のスタイル */
-.btn.secondary {
-    background-color: #e0e0e0;
-    color: #333;
-    border-color: #a0a0a0;
-    float: right; /* 右にフローティング ★ */
-}
-
-.btn.secondary:hover {
-    background-color: #d0d0d0;
-}
-
-/* --- フッター部分（個人情報取り扱いについて） --- */
-.privacy-footer {
-    background-color: #ffe0e0; /* 赤みがかった背景色 */
-    padding: 30px 30px; /* 上下左右のパディングを調整（下を多めにすることも可能） */
-    margin-top: 20px; /* フォーム本体との間隔 */
-    text-align: left; /* 左寄せ */
-    border-radius: 0; /* ★角丸をなくす */
-    border: none; /* ★もし設定されていれば枠線を削除 */
-    /* 背景を「下まで伸ばす」ための設定（親要素の高さに依存します） */
-    /* min-height: 80px; /* 最小高さを設定して、背景を広げる（必要であれば） */
-    box-sizing: border-box; /* パディングを含めて幅を計算 */
-}
-
-.privacy-footer p {
-    font-size: 0.8em;
-    color: #555;
-    white-space: nowrap; /* ★文字を1行にする */
-    overflow: hidden; /* はみ出した部分を隠す */
-    text-overflow: ellipsis; /* はみ出した部分を ... で表示 */
-    margin: 0; /* 親要素のパディングを使うため、pのデフォルトマージンをリセット */
-    padding: 0; /* 親要素のパディングを使うため、pのデフォルトパディングをリセット */
-}
-
-/* フッター内のリンクのスタイル */
-.privacy-footer p a {
-    color: #007bff; /* リンクの色 */
-    text-decoration: underline; /* 下線 */
-}
-
-input::placeholder {
-    color: #999;
+.bottom-bar {
+    width: 900px; /* ヘッダーとコンテナの幅に合わせる */
+    height: 20px; /* 画像で見られる高さに調整 */
+    background-color: #d0d0d0; /* 下部のバーの灰色 */
+    margin-top: 0; /* コンテナとの間に隙間がないようにする */
 }
